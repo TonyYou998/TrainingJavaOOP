@@ -4,6 +4,7 @@ import org.example.Entites.Class;
 import org.example.Entites.Student;
 import org.example.Entites.Teacher;
 import org.example.service.ClassService;
+import org.example.service.ClassServiceImpl;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -11,6 +12,11 @@ import java.util.Scanner;
 
 public  class ClassController {
     public static List<Class> lstClass=new LinkedList<>();
+    private ClassService classService;
+    public ClassController(){
+        this.classService=new ClassServiceImpl();
+
+    }
     public  void createClass(){
 
         Scanner scan=new Scanner(System.in);
@@ -18,9 +24,9 @@ public  class ClassController {
         String className= scan.nextLine();
         System.out.println("Nhập số sv");
         int members= Integer.parseInt(scan.nextLine());
-        Class c=new Class();
-        c.setName(className);
-        c.setMembers(members);
+
+        classService.createClass(className,members);
+
 
     }
     public void deleteClass(String className){
